@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Base64 Redirector</title></head>
+  <body>
+    <script>
+      const b64 = new URLSearchParams(window.location.search).get("q");
+      if (b64) {
+        const decoded = atob(b64);
+        window.location.href = decoded;
+      } else {
+        document.write("Missing ?q= parameter");
+      }
+    </script>
+  </body>
+</html>
