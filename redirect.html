@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head><title>Redirecting...</title></head>
-<body>
-  <script>
-    const param = new URLSearchParams(window.location.search).get("q");
-    if (param) {
-      try {
-        const decoded1 = atob(param);       // First decode
-        const decoded2 = atob(decoded1);    // Second decode
-        window.location.href = decoded2;    // Redirect to final URL
-      } catch (e) {
-        document.body.innerText = "🚫 Invalid or non-double-encoded Base64 URL";
-      }
-    } else {
-      document.body.innerText = "⚠️ Missing 'q' parameter";
-    }
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      (function () {
+        const q = new URLSearchParams(window.location.search).get("q");
+        if (!q) {
+          document.body.innerText = "⚠️ Missing 'q' parameter";
+          return;
+        }
+        try {
+          const level1 = atob(q);
+          const level2 = atob(level1);
+          location.replace(level2);
+        } catch (e) {
+          document.body.innerText = "🚫 Invalid base64 or redirect failed.";
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>🔄 Redirecting...</p>
+  </body>
 </html>
