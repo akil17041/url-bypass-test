@@ -8,12 +8,12 @@
       try {
         const decoded1 = atob(param);       // First decode
         const decoded2 = atob(decoded1);    // Second decode
-        window.location.href = decoded2;
+        window.location.href = decoded2;    // Redirect to final URL
       } catch (e) {
-        document.write("🚫 Invalid or non-double-encoded Base64 URL");
+        document.body.innerText = "🚫 Invalid or non-double-encoded Base64 URL";
       }
     } else {
-      document.write("⚠️ No URL provided in 'q' parameter");
+      document.body.innerText = "⚠️ Missing 'q' parameter";
     }
   </script>
 </body>
