@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head><title>Base64 Redirector</title></head>
-  <body>
-    <script>
-      const b64 = new URLSearchParams(window.location.search).get("q");
-      if (b64) {
-        const decoded = atob(b64);
-        window.location.href = decoded;
-      } else {
-        document.write("Missing ?q= parameter");
+<head><title>Redirecting...</title></head>
+<body>
+  <script>
+    const param = new URLSearchParams(window.location.search).get("q");
+    if (param) {
+      try {
+        const decoded1 = atob(param);       // First decode
+        const decoded2 = atob(decoded1);    // Second decode
+        window.location.href = decoded2;
+      } catch (e) {
+        document.write("🚫 Invalid or non-double-encoded Base64 URL");
       }
-    </script>
-  </body>
+    } else {
+      document.write("⚠️ No URL provided in 'q' parameter");
+    }
+  </script>
+</body>
 </html>
