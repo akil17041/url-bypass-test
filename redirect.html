@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<title>Redirecting...</title>
-<script>
-(function() {
-  const q = new URLSearchParams(window.location.search).get("q");
-  if (!q) {
-    document.body.innerText = "⚠️ Missing 'q' parameter";
-    return;
-  }
-  try {
-    const decoded1 = atob(q);
-    const decoded2 = atob(decoded1);
-    const url = decoded2.trim();
-    console.log("Redirecting to:", url);
-    location.replace(url);
-  } catch (e) {
-    document.body.innerText = "🚫 Invalid base64 or redirect failed.";
-  }
-})();
-</script>
-</head>
+<head><title>Redirecting...</title></head>
 <body>
-<p>🔄 Redirecting...</p>
+  <script>
+    const param = new URLSearchParams(window.location.search).get("q");
+    if (param) {
+      try {
+        const decoded = atob(param);
+        window.location.href = decoded;
+      } catch (e) {
+        document.write("Invalid Base64 URL");
+      }
+    } else {
+      document.write("Missing URL");
+    }
+  </script>
 </body>
 </html>
